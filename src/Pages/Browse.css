@@ -1,0 +1,309 @@
+/* Browse Page Styles - Consistent with Campus Marketplace Theme */
+/* Mobile-First with responsive design */
+
+/* ===== BROWSE PAGE LAYOUT ===== */
+.browse-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+  .browse-page {
+    padding: var(--spacing-xl);
+  }
+}
+
+.browse-page h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-xl);
+  color: var(--dark);
+  text-align: center;
+  position: relative;
+}
+
+.browse-page h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border-radius: 2px;
+}
+
+/* ===== FILTERS SECTION ===== */
+.filters {
+  background: white;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--spacing-xl);
+}
+
+.filters input,
+.filters select {
+  padding: var(--spacing-md);
+  border: 2px solid var(--light-gray);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+  background: white;
+  width: 100%;
+}
+
+.filters input:focus,
+.filters select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+}
+
+.filters input::placeholder {
+  color: var(--gray);
+}
+
+.filters select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236c757d'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--spacing-md) center;
+  background-size: 16px;
+  padding-right: var(--spacing-xl);
+}
+
+@media (min-width: 768px) {
+  .filters {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+  
+  .filters input {
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .filters select {
+    width: auto;
+    min-width: 160px;
+  }
+}
+
+/* ===== PRODUCT GRID ===== */
+.browse-page .grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+@media (min-width: 480px) {
+  .browse-page .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .browse-page .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .browse-page .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ===== LOADING STATES ===== */
+.browse-page .flex.justify-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-xl);
+}
+
+.browse-page .flex.justify-center.mt-10 {
+  margin-top: var(--spacing-xxl);
+}
+
+.browse-page .flex.justify-center.mt-6 {
+  margin-top: var(--spacing-xl);
+}
+
+/* ===== EMPTY STATE ===== */
+.browse-page .text-center {
+  text-align: center;
+  padding: var(--spacing-xxl) var(--spacing-xl);
+}
+
+.browse-page .text-gray-500 {
+  color: var(--gray);
+  font-size: 1.1rem;
+}
+
+/* ===== INFINITE SCROLL OBSERVER ===== */
+.last-product-observer {
+  height: 1px;
+  width: 100%;
+}
+
+/* ===== PRODUCT CARD ADJUSTMENTS FOR BROWSE PAGE ===== */
+.browse-page .product-card {
+  height: 100%;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.browse-page .product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 767px) {
+  .browse-page h1 {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .filters {
+    padding: var(--spacing-md);
+  }
+  
+  .filters input,
+  .filters select {
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .filters input:last-child,
+  .filters select:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* ===== LOADING ANIMATION ===== */
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.loading-pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* ===== FILTER ANIMATIONS ===== */
+.filters input,
+.filters select {
+  transition: all var(--transition-normal);
+}
+
+.filters input:hover,
+.filters select:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ===== ACCESSIBILITY ===== */
+.filters input:focus-visible,
+.filters select:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ===== DARK MODE SUPPORT (Optional) ===== */
+@media (prefers-color-scheme: dark) {
+  .browse-page {
+    background-color: #1a1a1a;
+    color: white;
+  }
+  
+  .browse-page h1 {
+    color: white;
+  }
+  
+  .filters {
+    background-color: #2d2d2d;
+  }
+  
+  .filters input,
+  .filters select {
+    background-color: #3d3d3d;
+    border-color: #4d4d4d;
+    color: white;
+  }
+  
+  .filters input::placeholder {
+    color: #888;
+  }
+}
+
+/* ===== CUSTOM SCROLLBAR FOR PRODUCT GRID ===== */
+.browse-page ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.browse-page ::-webkit-scrollbar-track {
+  background: var(--light-gray);
+  border-radius: 4px;
+}
+
+.browse-page ::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+.browse-page ::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* ===== ERROR STATE ===== */
+.browse-page .text-red-500 {
+  color: var(--danger);
+  text-align: center;
+  padding: var(--spacing-xl);
+  background: rgba(249, 65, 68, 0.1);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(249, 65, 68, 0.2);
+}
+
+/* ===== SUCCESS STATE ===== */
+.browse-page .text-green-500 {
+  color: var(--success);
+  text-align: center;
+  padding: var(--spacing-xl);
+  background: rgba(76, 201, 240, 0.1);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(76, 201, 240, 0.2);
+}
+
+/* ===== TRANSITION EFFECTS ===== */
+.browse-page * {
+  transition: color var(--transition-fast), 
+              background-color var(--transition-fast), 
+              border-color var(--transition-fast);
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  .browse-page .filters,
+  .browse-page .view-details-btn,
+  .browse-page .add-to-cart-btn {
+    display: none;
+  }
+  
+  .browse-page {
+    padding: 0;
+  }
+  
+  .browse-page .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: var(--spacing-md);
+  }
+}
