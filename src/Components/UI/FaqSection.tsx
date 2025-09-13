@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { FiChevronDown, FiChevronUp, FiHelpCircle, FiMessageSquare, FiMail } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import IconWrapper from "../IconWrapper";
 import "./FaqSection.css";
 
 interface FaqItem {
@@ -61,7 +62,7 @@ const FaqSection: React.FC = () => {
       <div className="faq-header">
         <div className="faq-title-container">
            <div className="faq-title-icon">
-            <FiHelpCircle  />
+            <IconWrapper icon={FiHelpCircle}/>
            </div>
           
           <h2>Frequently Asked Questions</h2>
@@ -105,12 +106,12 @@ const FaqSection: React.FC = () => {
                 <h3>{faq.question}</h3>
                 {openIndex === index ? (
                   <div className="faq-chevron">
-                     <FiChevronUp  />
+                    <IconWrapper icon={FiChevronUp}/>
                     </div>
                  
                 ) : (
                   <div className="faq-chevron">
-                    <FiChevronDown  />
+                    <IconWrapper icon={FiChevronDown}/>
                   </div>
                   
                 )}
@@ -129,12 +130,12 @@ const FaqSection: React.FC = () => {
       <div className="faq-support">
         <div className="support-content">
           
-           <div className="support-icon"><FiMessageSquare  /></div>
+           <div className="support-icon"><IconWrapper icon={FiMessageSquare}/></div>
           <h3>Still have questions?</h3>
           <p>Our support team is here to help you with any additional questions</p>
           <div className="support-actions">
             <button className="support-btn primary" onClick={() => navigate("*")}>
-               <div className="btn-icon" ><FiMail /></div>
+               <div className="btn-icon" ><IconWrapper icon={FiMail}/></div>
               
               Contact Support
             </button>

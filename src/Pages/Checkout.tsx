@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { useCartStore } from "../store/cartStore";
+import { useUserStore } from "../store/userStore";
 import { ordersApi } from "../Services/api";
 import { OrderCreateDto } from "../types/types";
+import toast from "react-hot-toast";
+import "./Checkout.css";
 
 const Checkout: React.FC = () => {
   const userId = 1; // demo user
@@ -10,34 +13,42 @@ const Checkout: React.FC = () => {
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
   const handleCheckout = async () => {
-    if (cart.length === 0) return;
+  if (cart.length === 0) return;
 
-    setLoading(true);
-    setMessage(null);
+  setLoading(true);
+  setMessage(null);
 
-    try {
-      const orderDto: OrderCreateDto = {
-        items: cart.map(item => ({
-          productId: item.product.id.toString(),
-          quantity: item.quantity,
-          price: item.product.price,
-        })),
-        totalAmount: totalPrice,
-      };
+  try {
+    const orderDto: OrderCreateDto = {
+  shippingAddress: "Demo Street 123",
+  items: cart.map(item => ({
+    productId: item.product.id,
+    quantity: item.quantity,
+    price: item.product.price, // renamed
+  })),
+  totalAmount: totalPrice,
+};
 
-      await ordersApi.createOrder(orderDto);
-      clearCart();
-      setMessage({ type: "success", text: "✅ Order placed successfully!" });
-    } catch (error) {
-      console.error(error);
-      setMessage({ type: "error", text: "❌ Failed to place order." });
-    } finally {
-      setLoading(false);
-    }
-  };
+    console.log("Sending order:", JSON.stringify(orderDto, null, 2));
+
+
+    console.log("JWT token before order:", useUserStore.getState().token);
+
+    await ordersApi.createOrder(orderDto);
+    clearCart();
+    toast("✅ Order placed successfully!");
+    setMessage({ type: "success", text: "✅ Order placed successfully!" });
+  } catch (error) {
+    console.error(error);
+    setMessage({ type: "error", text: "❌ Failed to place order." });
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
-    <div className="page-container">
+    <div className="checkout-page">
       <h2>💳 Checkout</h2>
 
       {message && (
@@ -53,12 +64,12 @@ const Checkout: React.FC = () => {
           <ul className="checkout-list">
             {cart.map(item => (
               <li key={item.product.id}>
-                {item.product.name} x {item.quantity} = ${(item.product.price * item.quantity).toFixed(2)}
+                {item.product.name} x {item.quantity} = Ksh.{(item.product.price * item.quantity).toFixed(2)}
               </li>
             ))}
           </ul>
 
-          <h3>Total: ${totalPrice.toFixed(2)}</h3>
+          <h3>Total: Ksh.{totalPrice.toFixed(2)}</h3>
 
           <button
             className="checkout-btn"

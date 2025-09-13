@@ -4,6 +4,7 @@ import ReactDOM from "react-dom"; // <-- import ReactDOM for portal
 import { Product } from "../../types/types";
 import { productsApi } from "../../Services/api";
 import { FiEdit, FiTrash2, FiX, FiChevronLeft, FiChevronRight, FiSave } from "react-icons/fi";
+import IconWrapper from "../IconWrapper";
 import './ProductModal.css';
 
 interface ProductModalProps {
@@ -77,7 +78,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose, onUpdate,
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         <div className="modal-header">
           <h2>{editing ? "Edit Product" : product.name}</h2>
-          <button onClick={onClose} aria-label="Close"><FiX size={24} /></button>
+          <button onClick={onClose} aria-label="Close"><IconWrapper icon={FiX} size={24} /></button>
         </div>
 
         <div className="modal-body">
@@ -86,8 +87,8 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose, onUpdate,
             <img src={images[currentImageIndex]} alt={product.name} />
             {images.length > 1 && (
               <>
-                <button onClick={prevImage} aria-label="Previous image"><FiChevronLeft /></button>
-                <button onClick={nextImage} aria-label="Next image"><FiChevronRight /></button>
+                <button onClick={prevImage} aria-label="Previous image"><IconWrapper icon={FiChevronLeft}/></button>
+                <button onClick={nextImage} aria-label="Next image"><IconWrapper icon={FiChevronRight}  /></button>
                 <div className="image-indicators">
                   {images.map((_, idx) => (
                     <button
@@ -131,7 +132,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose, onUpdate,
               </label>
 
               <div className="modal-actions">
-                <button onClick={handleSave}><FiSave /> Save</button>
+                <button onClick={handleSave}><IconWrapper icon={FiSave}/> Save</button>
                 <button onClick={() => setEditing(false)}> Cancel</button>
               </div>
             </div>
@@ -147,8 +148,8 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose, onUpdate,
 
               {readOnly && (
                     <div className="modal-actions">
-                        <button onClick={() => setEditing(true)}><FiEdit /> Edit</button>
-                        <button onClick={() => onDelete && onDelete(product.id)}><FiTrash2 /> Delete</button>
+                        <button onClick={() => setEditing(true)}><IconWrapper icon={FiEdit}  />Edit</button>
+                        <button onClick={() => onDelete && onDelete(product.id)}><IconWrapper icon={FiTrash2} /> Delete</button>
                     </div>
                     )}
 

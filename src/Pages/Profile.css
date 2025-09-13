@@ -13,7 +13,7 @@
 .profile-header {
   background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
   color: white;
-  border-radius: var(--radius-xl);
+  /*border-radius: var(--radius-xl); */
   padding: var(--spacing-xl);
   margin-bottom: var(--spacing-xl);
   position: relative;
@@ -625,42 +625,60 @@ button:focus-visible {
 }
 /* Profile Notifications */
 .profile-notifications {
-  position: relative;
-  display: flex;
-  align-items: center;
-  margin-left: auto; /* push it to the right side if in a header */
+  margin-top: 12px;
 }
 
 .notification-icon {
-  position: relative;
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  color: #444;
+  gap: 10px;
   text-decoration: none;
-  transition: color 0.2s ease;
+  color: var(--text-color);
+  position: relative;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
 }
 
 .notification-icon:hover {
-  color: #000;
+  background-color: var(--hover-bg-color);
 }
 
-.notification-icon svg {
-  display: block;
+.icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.badge {
+.notification-badge {
   position: absolute;
   top: -6px;
   right: -6px;
-  background: #e02424; /* red */
-  color: #fff;
-  font-size: 12px;
+  background-color: crimson;
+  color: white;
+  font-size: 10px;
   font-weight: bold;
   padding: 2px 6px;
-  border-radius: 9999px; /* pill shape */
-  line-height: 1;
-  min-width: 18px;
-  text-align: center;
-  box-shadow: 0 0 4px rgba(0,0,0,0.2);
+  border-radius: 12px;
+  box-shadow: 0 0 0 2px white;
+}
+
+.notification-label {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.orders-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.orders-icon:hover {
+  text-decoration: underline;
 }

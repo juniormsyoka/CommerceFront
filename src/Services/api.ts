@@ -82,13 +82,12 @@ export const productsApi = {
 // Orders API
 export const ordersApi = {
   createOrder: (order: OrderCreateDto): Promise<Order> =>
-    apiFetch("/orders", { 
-      method: "POST", 
-      body: JSON.stringify(order) 
+    apiFetch("/orders", {
+      method: "POST",
+      body: JSON.stringify(order),
     }),
 
-  getUserOrders: (): Promise<Order[]> =>
-    apiFetch("/orders/my"),
+  getUserOrders: (): Promise<Order[]> => apiFetch("/orders/my"),
 
   updateLatestOrderStatus: (status: string): Promise<boolean> =>
     apiFetch("/orders/my/latest/status", {

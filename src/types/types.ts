@@ -52,22 +52,29 @@ export interface User {
 export interface Order {
   id: string;
   userId: string;
-  createdAt: string;
+  orderDate: string;
+  shippingAddress:string;
   status: string;
   totalAmount: number;
-  items?: OrderItem[];
+  orderItems?: OrderItem[]; // renamed from "items" to match backend
 }
+
 
 export interface OrderItem {
+  id: string;        // unique ID of the order item
+  orderId: string;   // parent order ID
   productId: string;
   quantity: number;
-  price: number;
+  unitPrice: number; // renamed from "price" to match DB
 }
 
-export interface OrderCreateDto {
+
+/*export interface OrderCreateDto {
+  //customerId: string;
   items: OrderItem[];
+  shippingAddress: string;
   totalAmount: number;
-}
+}*/
 export interface Listing {
   id: number;
   title: string;
@@ -91,4 +98,15 @@ export interface AppNotification {
   message: string;
   isRead: boolean;
   createdAt: string;   // ISO string from backend
+}
+export interface OrderCreateItemDto {
+  productId: string;
+  quantity: number;
+  price: number;
+}
+
+export interface OrderCreateDto {
+  items: OrderCreateItemDto[];
+  shippingAddress: string;
+  totalAmount: number;
 }

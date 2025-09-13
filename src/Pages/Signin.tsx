@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useUserStore } from "../store/userStore";
 import { AuthResult } from "../types/auth";
 import { User } from "../types/types";
+import IconWrapper from "../Components/IconWrapper";
 
 interface GoogleProfile {
   email: string;
@@ -119,7 +120,8 @@ const handleSubmit = async (e: React.FormEvent) => {
             <div className="form-group">
               <label htmlFor="email" className="form-label">Email</label>
               <div className="input-container">
-                <span className="input-icon"><FaEnvelope size={16} /></span>
+                <span className="input-icon"><IconWrapper icon={FaEnvelope} size={16} /></span>
+                
                 <input
                   type="email"
                   name="email"
@@ -136,7 +138,7 @@ const handleSubmit = async (e: React.FormEvent) => {
             <div className="form-group">
               <label htmlFor="password" className="form-label">Password</label>
               <div className="input-container">
-                <span className="input-icon"><FaLock size={18} /></span>
+                <span className="input-icon"><IconWrapper icon={FaLock} size={18} /></span>
                 <input
                   type="password"
                   name="password"
@@ -158,7 +160,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
             <button type="submit" className="submit-button" disabled={loading}>
               {loading &&  <span className="spinner">
-              <FaSpinner size={18} />
+              <IconWrapper icon={FaSpinner} size={14} />
             </span>}
               {loading ? "Signing in..." : "Sign In"}
             </button>

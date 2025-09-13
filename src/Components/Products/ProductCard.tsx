@@ -6,6 +6,7 @@ import { useCartStore } from "../../store/cartStore";
 import { useNavigate } from 'react-router-dom';
 import toast from "react-hot-toast";
 import { useUserStore } from "../../store/userStore";
+import IconWrapper from "../IconWrapper";
 
 interface ProductCardProps {
   product: Product;
@@ -46,7 +47,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     toast.success(
       (t) => (
         <div className="flex items-center gap-2">
-          <FiCheck color="green" />
+          <IconWrapper icon={FiCheck} size={18} />
           <span>{product.name} added to cart</span>
           <button
           onClick={() => {
@@ -82,7 +83,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           onClick={handleAddToCart}
           aria-label="Add to Cart"
         >
-          <FiShoppingCart size={18} />
+          <IconWrapper icon={FiShoppingCart} size={18} />
         </button>
       )}
 
@@ -97,7 +98,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         {/* If already in cart, show a dull checkmark */}
         {isInCart && (
         <div className="absolute bottom-3 right-3 p-2 rounded-full bg-gray-400 text-white shadow-lg">
-          <FiCheck size={18} />
+          <IconWrapper icon={FiCheck } size={18} />
         </div>
       )}
       </div>
@@ -133,7 +134,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
               onCardClick?.(product);
             }}
           >
-            <FiEye size={14} /> View
+            <IconWrapper icon={FiEye} size={14} />
+            View
           </button>
         </div>
       </div>

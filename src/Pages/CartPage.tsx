@@ -147,7 +147,7 @@ export default function CartPage() {
             <Button variant="secondary" onClick={clearCart} className="clear-cart-btn">
               Clear Cart
             </Button>
-            <Button variant="primary" className="checkout-btn">
+            <Button variant="primary" className="checkout-btn" onClick={() => navigate("/checkout")}>
               Proceed to Checkout
             </Button>
           </div>

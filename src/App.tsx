@@ -12,6 +12,7 @@ import Checkout from "./Pages/Checkout";
 import Signup from "./Pages/Signup";
 import Signin from "./Pages/Signin";
 import Browse from "./Pages/Browse";
+import MyOrders from "./Pages/MyOrders";
 import NotificationsPage from "./Pages/NotificationsPage";
 import NotFoundPage from "./Pages/NotFoundPage";
 
@@ -43,6 +44,7 @@ const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
               <Link to="/postitem">⬆️ Post Item</Link>
               <Link to="/Profile">👤 Profile</Link>
               
+              
             </nav>
           </header>
 
@@ -56,6 +58,7 @@ const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
               <Route path="/signin" element={<Signin />} />
               <Route path="/profile" element={<Profile />} />
               <Route path='/postitem' element={<PostItem />} />
+              <Route path="/myorders" element={<MyOrders />} />
               <Route path="/notifications" element={<NotificationsPage />} />
               <Route path="*" element={<NotFoundPage />} />
 

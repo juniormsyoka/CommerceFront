@@ -4,7 +4,7 @@ import { productsApi } from "../Services/api";
 import { Product } from "../types/types";
 import { LoadingSpinner } from "../Components/UI/LoadingSpinner";
 import { Alert } from "../Components/UI/Alert";
-import { FiEdit, FiTrash2, FiChevronLeft, FiChevronRight, FiX, FiPlus, FiEye , FiBell} from "react-icons/fi";
+import { FiEdit, FiTrash2, FiChevronLeft, FiChevronRight, FiX, FiPlus, FiEye , FiBell, FiPackage} from "react-icons/fi";
 import "./Profile.css"; // Import the CSS file
 import DescriptionTruncate from "../Components/UI/DescriptionTruncate";
 import { Link } from "react-router-dom";
@@ -12,17 +12,21 @@ import ProductModal from "../Components/Products/ProductModal";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { AppNotificationsApi } from "../Services/api";
+import IconWrapper from "../Components/IconWrapper";
 import { AppNotification } from "../types/types";
 
 
 
 const EmptyState: React.FC<{ onCreateListing: () => void }> = ({ onCreateListing }) => (
   <div className="empty-state">
-    <span><FiEye size={40} /></span>
+    <span><IconWrapper icon={FiEye} size={40} /></span>
     <h3>No listings yet</h3>
     <p>You haven't posted any items for sale. Create your first listing to start selling.</p>
     <button onClick={onCreateListing}>
-      <FiPlus size={18} /> Create Listing
+      <Link to="/postitem" className="primary-btn tech-btn">
+      <IconWrapper icon={FiPlus} size={18} /> Create Listing
+      </Link>
+      
     </button>
   </div>
 );
@@ -131,13 +135,22 @@ const Profile: React.FC = () => {
             </div>
 
              <div className="profile-notifications">
-            <Link to="/notifications" className="notification-icon">
-              <FiBell size={24} />
-              {notifications.length > 0 && (
-                <span className="badge">{notifications.length}</span>
-              )}
-            </Link>
-          </div>
+              <Link to="/notifications" className="notification-icon">
+                <IconWrapper icon={FiBell} size={24} />
+                {notifications.length > 0 && (
+                  <span className="badge">{notifications.length}</span>
+                )}
+              </Link>
+            </div>
+            <div className="profile-orders">
+              <Link to="/myorders" className="orders-icon">
+              <IconWrapper icon={FiPackage} size={24} />
+
+                <IconWrapper icon={FiChevronRight} size={24} />
+                <span>My Orders</span>
+              </Link>
+            </div>
+
 
           </div>
         </div>
@@ -157,7 +170,7 @@ const Profile: React.FC = () => {
               </button>
             ))}
             <button className="new-listing-btn">
-              <FiPlus size={16} />  <Link to="/postitem">New Listing </Link>
+              <IconWrapper icon={FiPlus} size={16} /> <Link to="/postitem">New Listing </Link>
             </button>
           </div>
         </div>
@@ -169,7 +182,7 @@ const Profile: React.FC = () => {
         ) : error ? (
           <Alert type="error" message={error} />
         ) : filteredProducts.length === 0 ? (
-          <EmptyState onCreateListing={() => console.log("Create new listing")} />
+          <EmptyState onCreateListing={() => toast("Create new listing")} />
         ) : (
           <div className="product-grid">
               {filteredProducts.map(product => (

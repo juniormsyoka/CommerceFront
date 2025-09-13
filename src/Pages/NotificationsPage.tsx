@@ -3,6 +3,7 @@ import { AppNotification } from "../types/types";
 import { AppNotificationsApi } from "../Services/api";
 import { FiCheckCircle, FiMail} from "react-icons/fi";
 import { IoMdMailOpen } from "react-icons/io";
+import IconWrapper from "../Components/IconWrapper";
 import "./NotificationsPage.css";
 
 const NotificationsPage: React.FC = () => {
@@ -49,7 +50,8 @@ const NotificationsPage: React.FC = () => {
       <div className="notifications-header">
         <h2>Inbox</h2>
         <button className="mark-all-btn" onClick={handleMarkAllAsRead}>
-          <FiCheckCircle size={16} /> Mark all as read
+          <IconWrapper icon={FiCheckCircle} size={16}/>
+          Mark all as read
         </button>
       </div>
 
@@ -65,8 +67,8 @@ const NotificationsPage: React.FC = () => {
               className={`notification-item ${n.isRead ? "read" : "unread"}`}
               onClick={() => handleMarkAsRead(n.id)}
             >
-              <span className="icon">
-                {n.isRead ? <IoMdMailOpen />: <FiMail />}
+              <span className="icon"> 
+                {n.isRead ? <IconWrapper icon={IoMdMailOpen}/>: <IconWrapper icon={FiMail}/>}
               </span>
               <div className="content">
                 <p className="message">{n.message}</p>
